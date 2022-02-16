@@ -32,6 +32,8 @@
       "@typescript-eslint/triple-slash-reference": 0,
       "no-use-before-define": "off",
       "@typescript-eslint/no-use-before-define": "off",
+      "react/require-default-props" : "off",
+      "react/jsx-props-no-spreading": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react/jsx-filename-extension": [1, {"extensions": [".tsx"]}],
