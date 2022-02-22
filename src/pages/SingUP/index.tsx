@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import { FiUser, FiArrowLeft, FiMail, FiLock } from 'react-icons/fi';
 
 import { Container, Background, Content } from './styles';
 import imgLogo from '../../assets/logo.svg';
@@ -7,15 +7,16 @@ import imgLogo from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const SingIN: React.FC = () => {
+const SingUP: React.FC = () => {
   return (
     <Container>
       <Background />
       <Content>
         <img src={imgLogo} alt="logo" />
         <form>
-          <h1>Faça seu logon</h1>
+          <h1>Faça seu cadastro</h1>
 
+          <Input icon={FiUser} name="email" type="text" placeholder="Usuario" />
           <Input icon={FiMail} name="email" type="email" placeholder="Email" />
           <Input
             icon={FiLock}
@@ -24,17 +25,16 @@ const SingIN: React.FC = () => {
             placeholder="Senha"
           />
 
-          <Button type="submit"> Entrar </Button>
-          <a href="senah"> Esqueci minha senha </a>
+          <Button type="submit"> Cadastrar </Button>
         </form>
 
         <a href="/">
-          <FiLogIn />
-          criar conta
+          <FiArrowLeft />
+          Voltar para Login
         </a>
       </Content>
     </Container>
   );
 };
 
-export default SingIN;
+export default SingUP;
