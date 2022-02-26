@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 import { FiUser, FiArrowLeft, FiMail, FiLock } from 'react-icons/fi';
 
 import { Container, Background, Content } from './styles';
@@ -8,21 +9,57 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 const SingUP: React.FC = () => {
+  const { control, handleSubmit } = useForm();
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  function handleAdd(data: FieldValues) {
+    console.log(data);
+  }
+
   return (
     <Container>
       <Background />
       <Content>
         <img src={imgLogo} alt="logo" />
-        <form>
+        <form onSubmit={handleSubmit(handleAdd)}>
           <h1>Faça seu cadastro</h1>
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Input
+                icon={FiUser}
+                type="text"
+                placeholder="Usuario"
+                {...field}
+              />
+            )}
+            name="usuario"
+          />
 
-          <Input icon={FiUser} name="email" type="text" placeholder="Usuario" />
-          <Input icon={FiMail} name="email" type="email" placeholder="Email" />
-          <Input
-            icon={FiLock}
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Input
+                icon={FiMail}
+                type="email"
+                placeholder="Email"
+                {...field}
+              />
+            )}
+            name="email"
+          />
+
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Input
+                icon={FiLock}
+                type="password"
+                placeholder="Senha"
+                {...field}
+              />
+            )}
             name="senha"
-            type="password"
-            placeholder="Senha"
           />
 
           <Button type="submit"> Cadastrar </Button>
