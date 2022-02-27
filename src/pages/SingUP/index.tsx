@@ -11,8 +11,7 @@ import Button from '../../components/Button';
 const SingUP: React.FC = () => {
   const { control, handleSubmit } = useForm();
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  function handleAdd(data: FieldValues) {
+  function handleRegister(data: FieldValues): void {
     console.log(data);
   }
 
@@ -21,7 +20,7 @@ const SingUP: React.FC = () => {
       <Background />
       <Content>
         <img src={imgLogo} alt="logo" />
-        <form onSubmit={handleSubmit(handleAdd)}>
+        <form onSubmit={handleSubmit(handleRegister)}>
           <h1>Faça seu cadastro</h1>
           <Controller
             control={control}

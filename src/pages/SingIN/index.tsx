@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
 import { Container, Background, Content } from './styles';
@@ -11,8 +11,7 @@ import Button from '../../components/Button';
 const SingIN: React.FC = () => {
   const { control, handleSubmit } = useForm();
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  function handleAdd(data: object): void {
+  function handleLogin(data: FieldValues): void {
     console.log(data);
   }
 
@@ -21,15 +20,33 @@ const SingIN: React.FC = () => {
       <Background />
       <Content>
         <img src={imgLogo} alt="logo" />
-        <form onSubmit={handleSubmit(handleAdd)}>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <h1>Faça seu logon</h1>
 
-          <Input icon={FiMail} name="email" type="email" placeholder="Email" />
-          <Input
-            icon={FiLock}
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Input
+                icon={FiMail}
+                type="email"
+                placeholder="Email"
+                {...field}
+              />
+            )}
+            name="email"
+          />
+
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Input
+                icon={FiLock}
+                type="password"
+                placeholder="Senha"
+                {...field}
+              />
+            )}
             name="senha"
-            type="password"
-            placeholder="Senha"
           />
 
           <Button type="submit"> Entrar </Button>
