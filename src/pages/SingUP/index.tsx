@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, Controller, FieldValues } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { FiUser, FiArrowLeft, FiMail, FiLock } from 'react-icons/fi';
 
 import { Container, Background, Content } from './styles';
@@ -7,9 +8,14 @@ import imgLogo from '../../assets/logo.svg';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import schema from './validation';
 
 const SingUP: React.FC = () => {
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   function handleRegister(data: FieldValues): void {
     console.log(data);
@@ -25,12 +31,16 @@ const SingUP: React.FC = () => {
           <Controller
             control={control}
             render={({ field }) => (
-              <Input
-                icon={FiUser}
-                type="text"
-                placeholder="Usuario"
-                {...field}
-              />
+              <>
+                <Input
+                  icon={FiUser}
+                  type="text"
+                  placeholder="Usuario"
+                  {...field}
+                />
+
+                {errors.usuario?.message}
+              </>
             )}
             name="usuario"
           />
@@ -38,12 +48,15 @@ const SingUP: React.FC = () => {
           <Controller
             control={control}
             render={({ field }) => (
-              <Input
-                icon={FiMail}
-                type="email"
-                placeholder="Email"
-                {...field}
-              />
+              <>
+                <Input
+                  icon={FiMail}
+                  type="email"
+                  placeholder="Email"
+                  {...field}
+                />
+                {errors.email?.message}
+              </>
             )}
             name="email"
           />
@@ -51,12 +64,16 @@ const SingUP: React.FC = () => {
           <Controller
             control={control}
             render={({ field }) => (
-              <Input
-                icon={FiLock}
-                type="password"
-                placeholder="Senha"
-                {...field}
-              />
+              <>
+                <Input
+                  icon={FiLock}
+                  type="password"
+                  placeholder="Senha"
+                  {...field}
+                />
+
+                {errors.senha?.message}
+              </>
             )}
             name="senha"
           />
